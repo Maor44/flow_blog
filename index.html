@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FB</title>
+    <script>
+      function handleFirstTab(e) {
+        if (e.keyCode === 9) {
+          document.body.classList.add("user-is-tabbing");
+
+          window.removeEventListener("keydown", handleFirstTab);
+          window.addEventListener("mousedown", handleMouseDownOnce);
+        }
+      }
+
+      function handleMouseDownOnce() {
+        document.body.classList.remove("user-is-tabbing");
+
+        window.removeEventListener("mousedown", handleMouseDownOnce);
+        window.addEventListener("keydown", handleFirstTab);
+      }
+
+      window.addEventListener("keydown", handleFirstTab);
+    </script>
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
